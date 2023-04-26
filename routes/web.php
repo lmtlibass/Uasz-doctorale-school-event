@@ -23,7 +23,7 @@ Route::get('/home', function(){
 });
 
 Route::controller(AppelleController::class)->group( function(){
-    Route::get('appelle',               'index')->name('responsable.appelle.index');
+    Route::get('appelles',               'index')->name('responsable.appelle.index');
     Route::get('appelle',               'create')->name('responsable.appelle.create');
     Route::post('appelle',              'store')->name('responsable.appelle.store');
     Route::get('appelle/{appelle}',     'show')->name('responsable.appelle.show');
