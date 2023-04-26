@@ -15,9 +15,10 @@
               document.documentElement.classList.remove('dark')
           }
       </script>
+      <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
       
 </head>
-<body>
+<body class="dark:bg-gray-700">
      <div class="row">
 
           @if (session('success'))
