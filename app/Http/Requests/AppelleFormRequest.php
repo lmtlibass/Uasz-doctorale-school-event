@@ -25,7 +25,7 @@ class AppelleFormRequest extends FormRequest
             'title' => 'required|min:5',
             'description' => 'required|min:10',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'pj' => 'required|mimes:pdf,doc,docx',
+            'pj' => 'required|mimes:pdf,doc,docx,ppt,pptx',
         ];
     }
 }

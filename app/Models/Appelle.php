@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Appelle extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'title',
+        'description',
+        'image',
+        'pj',
+        'user_id',
+    ];
 }

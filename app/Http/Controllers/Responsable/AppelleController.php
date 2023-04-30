@@ -9,46 +9,87 @@ use App\Http\Requests\AppelleFormRequest;
 
 class AppelleController extends Controller
 {
-    public function index(){
+    /**
+     * Retourne la liste des appelles publiés par un responsable.
+     */
+    public function index()
+    {
+
         $appelles =  Appelle::paginate(8);
         return view('responsable.appelle.index', compact('appelles'));
     }
 
-    public function create(){
-        return view('responsable.appelle.create');
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create(Appelle $appelle)
+    {
+        return view('responsable.appelle.form', compact('appelle'));
     }
 
-    public function store(AppelleFormRequest $request){
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(AppelleFormRequest $request)
+    {
 
-        $appell = Appelle::create([
-            $request->validated(),
-            'user_id' => auth()->user()->id,
+
+
+        $image = $request->validated('image');
+        $pj = $request->validated('pj');
+
+        if ($image !== null && !$image->getError() || $pj !== null && !$pj->getError()) {
+            $data['image'] = $image->store('appelles-image', 'public');
+            $data['pj'] = $pj->store('appelle-fichier', 'public');
+        }
+
+
+        $data = $request->validated();
+        $appelle = Appelle::create([
+            'title'         => $data['title'],
+            'description'   => $data['description'],
+            'image'         => $data['image'],
+            'pj'            => $data['pj'],
+            'user_id'       => 1,
         ]);
-        
+
         return redirect()->route('responsable.appelle.index')->with('success', 'appelle à communication enrégistrer avec succées');
     }
 
-
-    public function show(Appelle $appelle){
+    /**
+     * Display the specified resource.
+     */
+    public function show(Appelle $appelle)
+    {
         return view('responsable.appelle.show', compact('appelle'));
     }
 
 
-    public function edit(Appelle $appelle){
-        return view('responsable.appelle.edit', compact('appelle'));
+    /**
+     * Show the form for editing the specified resource.
+     */
+
+    public function edit(Appelle $appelle)
+    {
+        return view('responsable.appelle.form', compact('appelle'));
     }
 
-    public function update(AppelleFormRequest $request, Appelle $appelle){
+    /**
+     * Update the specified resource in storage.
+     */
+
+    public function update(AppelleFormRequest $request, Appelle $appelle)
+    {
         $appelle->update($request->validated());
         return redirect()->route('responsable.appelle.index')->with('success', 'appelle à communication modifié avec succées');
     }
+    /**
+     * Remove the specified resource from storage.
+     */
 
-    public function destroy(Appelle $appelle){
+    public function destroy(Appelle $appelle)
+    {
         $appelle->delete();
         return redirect()->route('responsable.appelle.index')->with('success', 'appelle à communication supprimé avec succées');
     }
-
-    
-
-
 }
