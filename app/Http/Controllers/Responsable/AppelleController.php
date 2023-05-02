@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Responsable;
 
+use Carbon\Carbon;
 use App\Models\Appelle;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -15,7 +16,7 @@ class AppelleController extends Controller
     public function index()
     {
 
-        $appelles =  Appelle::paginate(8);
+        $appelles =  Appelle::where('appelles.user_id', '=', '1')->paginate(8);
         return view('responsable.appelle.index', compact('appelles'));
     }
 
@@ -32,27 +33,30 @@ class AppelleController extends Controller
      */
     public function store(AppelleFormRequest $request)
     {
-
-
-
+        
         $image = $request->validated('image');
         $pj = $request->validated('pj');
+        $data = $request->validated();
 
+       
         if ($image !== null && !$image->getError() || $pj !== null && !$pj->getError()) {
             $data['image'] = $image->store('appelles-image', 'public');
             $data['pj'] = $pj->store('appelle-fichier', 'public');
+            
+    
+            $appelle = Appelle::create([
+                'title'         => $request->validated('title'),
+                'description'   => $request->validated('description'),
+                'date'          => $request->validated('date'),
+                'image'         => $data['image'],
+                'pj'            => $data['pj'],
+                'user_id'       => 1,
+            ]);
+    
         }
-
-
-        $data = $request->validated();
-        $appelle = Appelle::create([
-            'title'         => $data['title'],
-            'description'   => $data['description'],
-            'image'         => $data['image'],
-            'pj'            => $data['pj'],
-            'user_id'       => 1,
-        ]);
-
+    
+ 
+        
         return redirect()->route('responsable.appelle.index')->with('success', 'appelle à communication enrégistrer avec succées');
     }
 

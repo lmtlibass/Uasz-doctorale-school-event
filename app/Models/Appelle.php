@@ -16,4 +16,5 @@ class Appelle extends Model
         'pj',
         'user_id',
     ];
+    protected $dates = ['date'];
 }

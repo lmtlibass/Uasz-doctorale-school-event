@@ -24,12 +24,20 @@
                @csrf
                @method($appelle->exists ? 'PUT' : 'POST')
 
-               @include('......shared.form.input', [
-                   'name' => 'title',
-                   'placeholder' => 'Titre',
-                   'type' => 'text',
-                   'value' => $appelle->title,
-               ])
+               <div class="grid grid-cols-2 gap-2">
+                    @include('......shared.form.input', [
+                        'name' => 'title',
+                        'placeholder' => 'Titre',
+                        'type' => 'text',
+                        'value' => $appelle->title,
+                    ])
+                    @include('......shared.form.input', [
+                         'name' => 'date',
+                         'placeholder' => 'Date',
+                         'type' => 'date',
+                         'value' => old('date'),
+                     ])
+               </div>
 
                @include('......shared.form.ckeditor', [
                    'name' => 'description',
@@ -49,7 +57,7 @@
                @include('......shared.form.dragfile', [
                    'name' => 'pj',
                    'type' => 'file',
-                     'value' => $appelle->pj,
+                   'value' => $appelle->pj,
                ])
 
 
