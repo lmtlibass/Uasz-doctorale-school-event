@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Appelle extends Model
 {
@@ -17,4 +19,15 @@ class Appelle extends Model
         'user_id',
     ];
     protected $dates = ['date'];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function imageUrl(){
+        return Storage::disk('public')->url($this->image);
+    }
+    public function pjUrl(){
+        return Storage::disk('public')->url($this->pj);
+    }
 }

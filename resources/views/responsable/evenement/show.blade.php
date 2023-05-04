@@ -1,6 +1,6 @@
 @extends('......base.layouts')
 
-@section('title', 'Detail de appelles{{ $appelle->title }}')
+@section('title', 'Detail de evenements{{ $evenement->title }}')
 
 <div class="flex flex-col">
      @include('......shared.navebar')
@@ -11,7 +11,7 @@
      <div class="shadow-lg p-10 ml-32 rounded-xl">
           <div class="flex justify-end">
 
-               <a href="{{ route('responsable.appelle.edit', $appelle) }}"
+               <a href="{{ route('responsable.evenement.edit', $evenement) }}"
                     class="px-4 py-2 flex justify-between items-center text-sm font-medium leading-5 text-white transition-colors duration-150 bg-[#249876] border border-transparent rounded-lg active:bg-blue-600 hover:bg-[028765] focus:outline-none focus:shadow-outline-blue">
                     Modifier
                     <svg class="h-8 w-6 ml-2 text-white" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
@@ -23,24 +23,24 @@
           <div class="grid grid-cols-1 gap-2">
                <h2 class="mb-4 mt-8 mx-auto text-xl font-bold text-gray-900 dark:text-white md:text-xl lg:text-xl ">
                     <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
-                         {{ $appelle->title }}</span>
+                         {{ $evenement->title }}</span>
                </h2>
                <div class="flex justify-between mt-5">
                     <div class="flex">
-                         <p class="text-gray-500 text-sm ml-2">Publié le {{ $appelle->created_at->format('d-m-Y') }}</p>
+                         <p class="text-gray-500 text-sm ml-2">Publié le {{ $evenement->created_at->format('d-m-Y') }}</p>
                     </div>
                     <div class="flex">
-                         <p class="text-gray-500 text-sm ml-2">Mis à jour le {{ $appelle->updated_at->format('d-m-Y') }}
+                         <p class="text-gray-500 text-sm ml-2">Mis à jour le {{ $evenement->updated_at->format('d-m-Y') }}
                          </p>
                     </div>
                </div>
                <div>
-                    <p class="text-gray-500 text-sm mt-2">{!! $appelle->description !!}</p>
+                    <p class="text-gray-500 text-sm mt-2">{!! $evenement->description !!}</p>
                </div>
           </div>
           <div class="mt-12 items-center flex justify-between">
-               <a href="{{ asset('storage/' . $appelle->pj) }}" class="text-sm flex"
-                    onclick="event.preventDefault(); downloadPDF('{{ asset('storage/' . $appelle->pj) }}');">
+               <a href="{{ asset('storage/' . $evenement->pj) }}" class="text-sm flex"
+                    onclick="event.preventDefault(); downloadPDF('{{ asset('storage/' . $evenement->pj) }}');">
                     <span class=" text-green-500">
                          Telecharger fichier</span>
                     <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" stroke-width="1.5"
@@ -74,7 +74,7 @@
                     var url = window.URL.createObjectURL(blob);
                     var a = document.createElement('a');
                     a.href = url;
-                    a.download = 'appelle.pdf';
+                    a.download = 'evenement.pdf';
                     document.body.appendChild(a);
                     a.click();
                     document.body.removeChild(a);

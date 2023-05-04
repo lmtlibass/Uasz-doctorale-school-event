@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\Appelle;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\AppelleFormRequest;
 
 class AppelleController extends Controller
@@ -31,31 +32,24 @@ class AppelleController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(AppelleFormRequest $request)
+    public function store(AppelleFormRequest $request, Appelle $appelle)
     {
         
-        $image = $request->validated('image');
-        $pj = $request->validated('pj');
-        $data = $request->validated();
-
-       
-        if ($image !== null && !$image->getError() || $pj !== null && !$pj->getError()) {
-            $data['image'] = $image->store('appelles-image', 'public');
-            $data['pj'] = $pj->store('appelle-fichier', 'public');
-            
-    
-            $appelle = Appelle::create([
-                'title'         => $request->validated('title'),
-                'description'   => $request->validated('description'),
-                'date'          => $request->validated('date'),
-                'image'         => $data['image'],
-                'pj'            => $data['pj'],
-                'user_id'       => 1,
-            ]);
-    
+        $data = [
+            'title' => $request->input('title'),
+            'description' => $request->input('description'),
+            'image' => $request->file('image')->store('appelles-image', 'public'),
+            'pj' => $request->file('pj')->store('appelle-fichier', 'public'),        
+            'user_id' => 1,
+        ];
+        if ($appelle->image) {
+            Storage::disk('public')->delete($appelle->image);
         }
-    
- 
+        if( $appelle->pj){
+            Storage::disk('public')->delete($appelle->pj);
+        }
+       
+        $appelle =  Appelle::create($data);
         
         return redirect()->route('responsable.appelle.index')->with('success', 'appelle à communication enrégistrer avec succées');
     }
@@ -75,7 +69,8 @@ class AppelleController extends Controller
 
     public function edit(Appelle $appelle)
     {
-        return view('responsable.appelle.form', compact('appelle'));
+        
+        return view('responsable.appelle.form', compact('appelle',));
     }
 
     /**
@@ -84,8 +79,34 @@ class AppelleController extends Controller
 
     public function update(AppelleFormRequest $request, Appelle $appelle)
     {
-        $appelle->update($request->validated());
+
+        
+        $appelle->update($this->replaceImage($appelle, $request));
         return redirect()->route('responsable.appelle.index')->with('success', 'appelle à communication modifié avec succées');
+    }
+
+    /**
+     * suppression du fichier avant de réenregistrer return array
+     */
+
+    private function replaceImage(Appelle $appelle, AppelleFormRequest $request): array
+    {
+        $data = $request->validated();
+        
+        $image = $request->validated('image');
+        $pj = $request->validated('pj');
+        
+        if ($appelle->image) {
+            Storage::disk('public')->delete($appelle->image);
+        }
+        if( $appelle->pj){
+            Storage::disk('public')->delete($appelle->pj);
+        }
+        $data['image'] = $image->store('appelles-image', 'public');
+        $data['pj'] = $pj->store('appelle-fichier', 'public');
+        // $date['user_id'] = 1;
+        return $data;
+       
     }
     /**
      * Remove the specified resource from storage.

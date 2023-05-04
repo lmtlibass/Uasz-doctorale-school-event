@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Responsable\AppelleController;
+use App\Http\Controllers\Responsable\EvenementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,4 +27,5 @@ Route::get('/home', function(){
 
 Route::prefix('responsable')->name('responsable.')->group(function(){
     Route::resource('appelle', AppelleController::class);
+    Route::resource('evenement', EvenementController::class);
 });
