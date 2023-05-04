@@ -16,7 +16,9 @@
                     'title' => $evenement->title,
                     'description' => strip_tags($evenement->description),
                     'image' => $evenement->imageUrl(),
-                    'route' => $evenement,
+                    'cardroute' => 'evenement',
+                    'argument' => $evenement,
+
                  ]) 
           @endforeach
      </div>

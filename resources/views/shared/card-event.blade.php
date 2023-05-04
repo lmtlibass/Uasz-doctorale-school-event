@@ -4,7 +4,8 @@
      $description ??= '';
      $image ??= '';
      $pj      ??= '';
-     $route ??='';
+     $cardroute ??='';
+     $argument ??='';
 @endphp
 
 
@@ -32,7 +33,7 @@
                               d="M7.5 7.5h-.75A2.25 2.25 0 004.5 9.75v7.5a2.25 2.25 0 002.25 2.25h7.5a2.25 2.25 0 002.25-2.25v-7.5a2.25 2.25 0 00-2.25-2.25h-.75m-6 3.75l3 3m0 0l3-3m-3 3V1.5m6 9h.75a2.25 2.25 0 012.25 2.25v7.5a2.25 2.25 0 01-2.25 2.25h-7.5a2.25 2.25 0 01-2.25-2.25v-.75">
                          </path>
                     </svg></a>
-                    <a href="{{route('responsable.appelle.show', $route)}}" class="text-white bg-green-700 hover:bg-green-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    <a href="{{route('responsable.'.$cardroute.'.show', $argument)}}" class="text-white bg-green-700 hover:bg-green-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                          Details</a>
                 </div>
       

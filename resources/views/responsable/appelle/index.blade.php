@@ -17,7 +17,8 @@
                     'description' => strip_tags($appelle->description),
                     'image' => $appelle->imageUrl(),
                     'pj'    => $appelle->pj,
-                    'route' => $appelle,
+                    'cardroute' => 'appelle',
+                    'argument' => $appelle,
                  ]) 
           @endforeach
      </div>
