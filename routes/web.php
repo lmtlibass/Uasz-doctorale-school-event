@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SoumissionController;
 use App\Http\Controllers\Responsable\AppelleController;
 use App\Http\Controllers\Responsable\EvenementController;
 
@@ -26,8 +27,9 @@ Route::controller(HomeController::class)->group(function(){
     Route::get('appelle/{id}', 'showAppelle')->name('appelle.show');
     Route::get('/evenement', 'evenement')->name('evenement');
     Route::get('evenement/{id}', 'showEvenement')->name('evenement.show');
-
 });
+
+Route::resource('soumission', SoumissionController::class)->except('create');
 
 
 

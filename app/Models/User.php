@@ -50,4 +50,8 @@ class User extends Authenticatable
     public function evenements(){
         return $this->hasMany(Evenement::class);
     }
+    public function soumission()
+    {
+        return $this->hasOne(Soumission::class);
+    }
 }
