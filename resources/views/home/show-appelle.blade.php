@@ -10,7 +10,7 @@
 <div class="px-12 py-10 -top-10 mt-32 mx-auto ml-28 ">
 
      <div class="shadow-lg p-10 ml-32 rounded-xl">
-
+          @include('...shared.session-status')
           <div class="grid grid-cols-1 gap-2">
                <h2 class="mb-4 mt-8 mx-auto text-xl font-bold text-gray-900 dark:text-white md:text-xl lg:text-xl ">
                     <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">

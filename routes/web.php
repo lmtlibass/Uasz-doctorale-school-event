@@ -31,7 +31,10 @@ Route::controller(HomeController::class)->group(function(){
 
 Route::resource('soumission', SoumissionController::class)->except('create');
 
-
+Route::controller(App\Http\Controllers\Responsable\SoumissionController::class)->prefix('responsable')->name('responsable.')->group(function(){
+    Route::get('soumissions/{appelle}', 'getSoumission')->name('soumission.get'); 
+    Route::get('soumission/{soumission}', 'showSoumission')->name('soumission.show');
+});
 
 
 Route::prefix('responsable')->name('responsable.')->group(function(){
