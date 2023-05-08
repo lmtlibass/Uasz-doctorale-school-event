@@ -44,10 +44,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function appelles(){
+    public function appelles()
+    {
         return $this->hasMany(Appelle::class);
     }
-    public function evenements(){
+    public function evenements()
+    {
         return $this->hasMany(Evenement::class);
     }
     public function soumission()

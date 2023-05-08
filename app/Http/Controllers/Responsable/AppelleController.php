@@ -39,19 +39,22 @@ class AppelleController extends Controller
             'title' => $request->input('title'),
             'description' => $request->input('description'),
             'image' => $request->file('image')->store('appelles-image', 'public'),
-            'pj' => $request->file('pj')->store('appelle-fichier', 'public'),        
+            'pj' => $request->file('pj')->store('appelle-fichier', 'public'),
             'user_id' => 1,
         ];
         if ($appelle->image) {
             Storage::disk('public')->delete($appelle->image);
         }
-        if( $appelle->pj){
+        if ($appelle->pj) {
+
             Storage::disk('public')->delete($appelle->pj);
         }
        
         $appelle =  Appelle::create($data);
         
-        return redirect()->route('responsable.appelle.index')->with('success', 'appelle à communication enrégistrer avec succées');
+        return redirect()
+                ->route('responsable.appelle.index')
+                ->with('success', 'appelle à communication enrégistrer avec succées');
     }
 
     /**
@@ -82,7 +85,9 @@ class AppelleController extends Controller
 
         
         $appelle->update($this->replaceImage($appelle, $request));
-        return redirect()->route('responsable.appelle.index')->with('success', 'appelle à communication modifié avec succées');
+        return redirect()
+                ->route('responsable.appelle.index')
+                ->with('success', 'appelle à communication modifié avec succées');
     }
 
     /**
@@ -99,12 +104,12 @@ class AppelleController extends Controller
         if ($appelle->image) {
             Storage::disk('public')->delete($appelle->image);
         }
-        if( $appelle->pj){
+        if ($appelle->pj) {
             Storage::disk('public')->delete($appelle->pj);
         }
         $data['image'] = $image->store('appelles-image', 'public');
         $data['pj'] = $pj->store('appelle-fichier', 'public');
-        // $date['user_id'] = 1;
+        //  $date['user_id'] = 1;
         return $data;
        
     }
@@ -115,6 +120,11 @@ class AppelleController extends Controller
     public function destroy(Appelle $appelle)
     {
         $appelle->delete();
-        return redirect()->route('responsable.appelle.index')->with('success', 'appelle à communication supprimé avec succées');
+        return redirect()
+                ->route('responsable.appelle.index')
+                ->with('success', 'appelle à communication supprimé avec succées');
     }
+
+
+
 }

@@ -34,6 +34,10 @@
                              'name' => 'password',
                              'required' => true,
                          ])
+                          @include('shared.form.input-password', [
+                              'name' => 'password_confirmation',
+                              'required' => true,
+                          ])
 
 
                          <div class="my-6">

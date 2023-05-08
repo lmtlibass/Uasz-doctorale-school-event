@@ -14,7 +14,7 @@
 
                     @include('shared.form.login-rs')
                     
-                    <form class="space-y-4 md:space-y-6" action="#">
+                    <form class="space-y-4 md:space-y-6" method="post" action="{{route('login')}}">
 
                          @include('shared.form.input', [
                              'name' => 'email',
@@ -26,10 +26,9 @@
                              'name' => 'password',
                              'required' => true,
                          ])
+                        
+
                          @include('shared.form.input-forgot-password')
-
-
-
 
                          <div class="my-6">
                               <button type="submit"
