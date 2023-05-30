@@ -17,7 +17,10 @@ return new class extends Migration
             $table->longText('description');
             $table->boolean('status')->default(0)->nullable();
             $table->string('pj');
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('user_id')
+                ->constrained('users')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
             $table->foreignId('appelle_id')->constrained('appelles');
             $table->timestamps();
         });

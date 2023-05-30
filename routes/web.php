@@ -43,3 +43,8 @@ Route::prefix('responsable')->name('responsable.')->group(function(){
     Route::resource('appelle', AppelleController::class);
     Route::resource('evenement', EvenementController::class);
 });
+
+
+Route::namespace('App\Http\Controllers\Admin')->prefix('admin')->name('admin.')->group(function(){
+    Route::resource('users', UserController::class);
+});
