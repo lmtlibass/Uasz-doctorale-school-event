@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->longText('description');
-            $table->boolean('status')->default(0);
+            $table->boolean('status')->default(0)->nullable();
             $table->string('pj');
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('appelle_id')->constrained('appelles');

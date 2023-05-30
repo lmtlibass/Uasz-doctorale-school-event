@@ -22,4 +22,20 @@ class SoumissionController extends Controller
     {
         return view('responsable.appelle.comunication', compact('soumission'));
     }
+
+    public function accepter(Soumission $soumission)
+    {
+        $soumission->update([
+            'status' => '1'
+        ]);
+        return redirect()->back()->with('success', 'La proposition de communication a été accepter avec succées');
+    }
+
+    public function refuser(Soumission $soumission)
+    {
+        $soumission->update([
+            'status' => '0'
+        ]);
+        return redirect()->back()->with('success', 'La proposition de communication a été refuser avec succées');
+    }
 }

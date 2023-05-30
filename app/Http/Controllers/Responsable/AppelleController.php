@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\AppelleFormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class AppelleController extends Controller
 {
@@ -40,7 +41,7 @@ class AppelleController extends Controller
             'description' => $request->input('description'),
             'image' => $request->file('image')->store('appelles-image', 'public'),
             'pj' => $request->file('pj')->store('appelle-fichier', 'public'),
-            'user_id' => 1,
+            'user_id' => Auth::user()->id,
         ];
         if ($appelle->image) {
             Storage::disk('public')->delete($appelle->image);
@@ -49,7 +50,8 @@ class AppelleController extends Controller
 
             Storage::disk('public')->delete($appelle->pj);
         }
-       
+
+        
         $appelle =  Appelle::create($data);
         
         return redirect()

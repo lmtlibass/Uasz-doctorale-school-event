@@ -34,21 +34,28 @@ class SoumissionController extends Controller
         
         
         $data = [
-            'title' => $request->validated('title'),
-            'description' => $request->validated('description'),
-            'status' => 0,
-            'user_id' => 1,
-            'appelle_id' => $request->input('appelle_id'),
-            'pj' => $request->file('pj')->store('appelle-fichier', 'public'),
+            'title'         => $request->validated('title'),
+            'description'   => $request->validated('description'),
+            'status'        => null,
+            'user_id'       => 1,
+            'appelle_id'    => $request->input('appelle_id'),
+            'pj'            => $request->file('pj')->store('appelle-fichier', 'public'),
         ];
 
         if( $soumission->pj){
             Storage::disk('public')->delete($soumission->pj);
         }
-        $soumission =  Soumission::create($data);
+       
 
+        $soumission =  Soumission::create($data);
         
-        return redirect()->back()->with('success', 'proposition enrégistrer avec succées');
+        if($soumission){
+
+            return redirect()->back()->with('success', 'proposition enrégistrer avec succées');
+        }else {
+            return redirect()->back()->with('error', 'proposition non enrégistrer');
+        }
+
     }
 
     /**

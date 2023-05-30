@@ -49,14 +49,14 @@
                </a>
           </div>
           <div class="flex flex-end justify-end gap-4">
-               <a href="{{ route('soumission.index') }}"
+               <a href="{{ route('responsable.soumission.accepter', $soumission) }}"
                     class="bg-gray-200 hover:bg-gray-700 text-green-800 font-bold py-2 px-4 rounded-full">
                     Accepté
                </a>
-               <a href="{{ route('soumission.index') }}"
+               <a href="{{ route('responsable.soumission.refuser', $soumission) }}"
                     class="bg-gray-200 hover:bg-gray-700 text-red-800 font-bold py-2 px-4 rounded-full">
                     Rejeter
-               </a>     
+               </a>
           </div>
      </div>
 </div>

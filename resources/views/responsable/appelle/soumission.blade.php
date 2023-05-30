@@ -115,11 +115,15 @@
                                    <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
                                         <div class="flex items-center">
                                              <div>
-                                                  @if ($soumission->status === 0)
-                                                       <span class="bg-red-100 text-red-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-red-200 dark:text-red-800 ml-2">
+                                                  @if ($soumission->status === null)
+                                                       <span class="bg-yellow-100 text-yellow-300 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-red-200 dark:text-red-800 ml-2">
                                                             En attente
                                                        </span>
-                                                 @else
+                                                 @elseif($soumission->status === 0)
+                                                       <span class="bg-red-100 text-red-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-red-200 dark:text-red-800 ml-2">
+                                                            Refusé
+                                                       </span>
+                                                  @elseif($soumission->status === 1)
                                                        <span class="bg-blue-100 text-blue-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-2">
                                                            Accépté
                                                        </span>

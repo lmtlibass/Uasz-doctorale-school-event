@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\Evenement;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\EvenementFormRequest;
 
@@ -38,7 +39,7 @@ class EvenementController extends Controller
             'title' => $request->input('title'),
             'description' => $request->input('description'),
             'media' => $request->file('media')->store('evenement-image', 'public'),
-            'user_id' => 1,
+            'user_id' => Auth::user()->id,
         ];
         
         if ($evenement->image) {
