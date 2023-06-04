@@ -15,7 +15,7 @@
                     'date' => $appelle->created_at->format('d-m-Y'),
                     'title' => $appelle->title,
                     'description' => strip_tags($appelle->description),
-                    'image' => $appelle->imageUrl(),
+                    'image' => $appelle->image,
                     'pj'    => $appelle->pj,
                     'cardroute' => 'appelle',
                     'argument' => $appelle,

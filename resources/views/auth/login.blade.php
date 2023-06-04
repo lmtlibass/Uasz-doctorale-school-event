@@ -12,9 +12,10 @@
                          Connexion
                     </h1>
 
-                    @include('shared.form.login-rs')
-                    
+                    {{-- @include('shared.form.login-rs')
+                     --}}
                     <form class="space-y-4 md:space-y-6" method="post" action="{{route('login')}}">
+                         @csrf
 
                          @include('shared.form.input', [
                              'name' => 'email',

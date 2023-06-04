@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MeetingController;
 use App\Http\Controllers\SoumissionController;
 use App\Http\Controllers\Responsable\AppelleController;
 use App\Http\Controllers\Responsable\EvenementController;
@@ -47,4 +48,16 @@ Route::prefix('responsable')->name('responsable.')->group(function(){
 
 Route::namespace('App\Http\Controllers\Admin')->prefix('admin')->name('admin.')->group(function(){
     Route::resource('users', UserController::class);
+});
+
+Route::get('meeting/home', function() {
+    return view('meeting.home');
+});
+Route::get('meeting/sallon/{meetingId}', function() {
+    return view('meeting.room');
+});
+
+Route::prefix('meeting')->name('meeting.')->group(function(){
+    Route::post("/nouveau", [MeetingController::class, 'createMeeting'])->name("createMeeting");
+    Route::post("/validerMeeting", [MeetingController::class, 'validateMeeting'])->name('validateMeeting');
 });

@@ -29,7 +29,7 @@
                <div class="flex justify-between">
                     
                     <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white md:text-xl lg:text-xl ">
-                         {{ $appelle->exists ? 'Modifier l\'appelle' : 'Ajouter une appelle' }} <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">à communication</span> 
+                         {{ $appelle->exists ? 'Modifier l\'appelle' : 'Ajouter une appelle' }} <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">à communication</span>
                     </h2>
                     <a href="{{ route('responsable.appelle.index') }}"
                          class="px-4 py-2 flex justify-between items-center text-sm font-medium leading-5 text-white transition-colors duration-150 bg-[#249876] border border-transparent rounded-lg active:bg-blue-600 hover:bg-[028765] focus:outline-none focus:shadow-outline-blue">

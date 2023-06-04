@@ -19,7 +19,7 @@
                     'cardroute' => 'evenement',
                     'argument' => $evenement,
 
-                 ]) 
+               ])
           @endforeach
      </div>
 </div>
