@@ -40,7 +40,7 @@
                                    d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
 
                          </svg>
-                         <span class="flex-1 ml-3 text-left whitespace-nowrap" sidebar-toggle-item>Appelle</span>
+                         <span class="flex-1 ml-3 text-left whitespace-nowrap" sidebar-toggle-item>Appelle à commu...</span>
                          <svg sidebar-toggle-item class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
                               xmlns="http://www.w3.org/2000/svg">
                               <path fill-rule="evenodd"
@@ -98,11 +98,11 @@
                                    d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z">
                               </path>
                          </svg>
-                         <span class="flex-1 ml-3 whitespace-nowrap">Soumission</span>
+                         <span class="flex-1 ml-3 whitespace-nowrap">Apelles à comm...</span>
                     </a>
                </li>
                <li>
-                    <a href="#"
+                    <a href="{{route('evenement.index')}}"
                          class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                          <svg aria-hidden="true"
                               class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"

@@ -15,7 +15,7 @@
                     'date' => $evenement->created_at->format('d-m-Y'),
                     'title' => $evenement->title,
                     'description' => strip_tags($evenement->description),
-                    'image' => $evenement->imageUrl(),
+                    'image' => $evenement->media,
                     'cardroute' => 'evenement',
                     'argument' => $evenement,
 

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\SoumissionFormRequest;
 use App\Models\Appelle;
+use Illuminate\Support\Facades\Auth;
 
 class SoumissionController extends Controller
 {
@@ -37,7 +38,7 @@ class SoumissionController extends Controller
             'title'         => $request->validated('title'),
             'description'   => $request->validated('description'),
             'status'        => null,
-            'user_id'       => 1,
+            'user_id'       => Auth::user()->id,
             'appelle_id'    => $request->input('appelle_id'),
             'pj'            => $request->file('pj')->store('appelle-fichier', 'public'),
         ];

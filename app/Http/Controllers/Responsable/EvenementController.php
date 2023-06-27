@@ -17,8 +17,8 @@ class EvenementController extends Controller
      */
     public function index()
     {
-
-        $evenements =  Evenement::where('evenements.user_id', '=', '1')->paginate(8);
+        $id = Auth::user()->id;
+        $evenements =  Evenement::where('evenements.user_id', '=', $id)->paginate(8);
         return view('responsable.evenement.index', compact('evenements'));
     }
 

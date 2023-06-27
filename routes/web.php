@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\MeetingController;
 use App\Http\Controllers\SoumissionController;
 use App\Http\Controllers\Responsable\AppelleController;
 use App\Http\Controllers\Responsable\EvenementController;
@@ -26,9 +25,10 @@ Route::controller(HomeController::class)->group(function(){
     Route::get('/', 'index')->name('home');
     Route::get('/appelle', 'appelle')->name('appelle');
     Route::get('appelle/{id}', 'showAppelle')->name('appelle.show');
-    Route::get('/evenement', 'evenement')->name('evenement');
     Route::get('evenement/{id}', 'showEvenement')->name('evenement.show');
 });
+
+Route::resource('evenement', App\Http\Controllers\EvenementController::class);
 
 Route::resource('soumission', SoumissionController::class)->except('create');
 
@@ -50,14 +50,3 @@ Route::namespace('App\Http\Controllers\Admin')->prefix('admin')->name('admin.')-
     Route::resource('users', UserController::class);
 });
 
-Route::get('meeting/home', function() {
-    return view('meeting.home');
-});
-Route::get('meeting/sallon/{meetingId}', function() {
-    return view('meeting.room');
-});
-
-Route::prefix('meeting')->name('meeting.')->group(function(){
-    Route::post("/nouveau", [MeetingController::class, 'createMeeting'])->name("createMeeting");
-    Route::post("/validerMeeting", [MeetingController::class, 'validateMeeting'])->name('validateMeeting');
-});
