@@ -6,7 +6,7 @@
 </div>
 
 
-<div class="px-12 mt-32 mx-auto ml-28 ">
+<div class="px-12 mt-32 mx-auto ml-28">
      @if ($errors->any())
           <div class="text-red-500 mx-auto ml-32 text-sm">
                <ul>
@@ -17,7 +17,6 @@
           </div>
      @endif
      <div class=" ml-14 ">
-         
           
           <form method="POST"
                action="{{ route($appelle->exists ? 'responsable.appelle.update' : 'responsable.appelle.store', $appelle) }}"

@@ -9,12 +9,19 @@
 
 <div class="px-12 py-10 -top-10 mt-32 mx-auto ml-28 ">
      <div class="shadow-lg p-10 ml-32 rounded-xl">
-          <div class="flex justify-end">
-
+          <div class="flex justify-end gap-3">
                <a href="{{ route('responsable.evenement.edit', $evenement) }}"
-                    class="px-4 py-2 flex justify-between items-center text-sm font-medium leading-5 text-white transition-colors duration-150 bg-[#249876] border border-transparent rounded-lg active:bg-blue-600 hover:bg-[028765] focus:outline-none focus:shadow-outline-blue">
+                    class="px-2  flex justify-between items-center text-sm font-medium leading-5 text-white transition-colors duration-150 bg-[#249876] border border-transparent rounded-lg active:bg-blue-600 hover:bg-[028765] focus:outline-none focus:shadow-outline-blue">
                     Modifier
-                    <svg class="h-8 w-6 ml-2 text-white" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                    <svg class="h-8 w-6 ml-2 text-white" width="24" viewBox="0 0 24 24" stroke-width="2"
+                         stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                         <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M9 7 h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" />  <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" />
+                    </svg>
+               </a>
+               <a href="{{ route('responsable.evenement.destroy', $evenement) }}"
+                    class="px-2  flex justify-between items-center text-sm font-medium leading-5 text-white transition-colors duration-150 bg-[#ce0033] border border-transparent rounded-lg active:bg-blue-600 hover:bg-[ce0032] focus:outline-none focus:shadow-outline-blue">
+                    Supprimer
+                    <svg class="h-8 w-6 ml-2 text-white" width="24" viewBox="0 0 24 24" stroke-width="2"
                          stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                          <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M9 7 h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3" />  <path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3" />
                     </svg>
@@ -51,6 +58,7 @@
                          </path>
                     </svg>
                </a>
+               
 
               
           </div>

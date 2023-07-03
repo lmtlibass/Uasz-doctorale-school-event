@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SoumissionController;
+use App\Http\Controllers\Meeting\MeetingController;
 use App\Http\Controllers\Responsable\AppelleController;
 use App\Http\Controllers\Responsable\EvenementController;
 
@@ -50,3 +51,19 @@ Route::namespace('App\Http\Controllers\Admin')->prefix('admin')->name('admin.')-
     Route::resource('users', UserController::class);
 });
 
+Route::get('/meetings', function(){
+    return view('meeting.index');
+})->name('meeting.index');
+
+Route::post("/createMeeting", [MeetingController::class, 'createMeeting'])->name("createMeeting");
+
+Route::post("/validateMeeting", [MeetingController::class, 'validateMeeting'])->name("validateMeeting");
+
+Route::get("/meeting/{meetingId}", function ($meetingId) {
+
+    $METERED_DOMAIN = env('METERED_DOMAIN');
+    return view('meeting.sallon', [
+        'METERED_DOMAIN' => $METERED_DOMAIN,
+        'MEETING_ID' => $meetingId
+    ]);
+});

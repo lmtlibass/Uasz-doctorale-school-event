@@ -35,9 +35,9 @@ class EvenementController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Evenement $evenement)
     {
-        //
+        return view('home.show-evenement', compact('evenement'));
     }
 
     /**
