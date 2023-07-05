@@ -1,32 +1,29 @@
-@extends('base.layouts')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <title>@yield('title') | Landing page</title>
 
-<div class="flex ">
-    @include('shared.navebar')
-    @include('shared.sidebar')
-</div>
+     @vite(['resources/css/app.css', 'resources/js/app.js'])
+     <script>
+          // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+          if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia(
+                    '(prefers-color-scheme: dark)').matches)) {
+               document.documentElement.classList.add('dark');
+          } else {
+               document.documentElement.classList.remove('dark')
+          }
+     </script>
+     <script src="//cdn.metered.ca/sdk/video/1.4.6/sdk.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+        
+</head>
+<body>
 
-<div class="px-12 mt-20 mx-auto sm:ml-64 ">
-    <div class=" w-11/12 mx-auto flex flex-row flex-wrap justify-start gap-8">
-        @include('shared/card-event', [
-        'date' => '2021-10-10',
-        'title' => 'title',
-        'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem nobis eos dolore illo sapiente placeat minus odit, minima quis nesciunt asperiores beatae voluptatem?'
-    ])
-    @include('shared/card-event', [
-        'date' => '2021-10-10',
-        'title' => 'title',
-        'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem nobis eos dolore illo sapiente placeat minus odit, minima quis nesciunt asperiores beatae voluptatem?'
-    ])
-    @include('shared/card-event', [
-        'date' => '2021-10-10',
-        'title' => 'title',
-        'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem nobis eos dolore illo sapiente placeat minus odit, minima quis nesciunt asperiores beatae voluptatem?'
-    ])
-    @include('shared/card-event', [
-        'date' => '2021-10-10',
-        'title' => 'title',
-        'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem nobis eos dolore illo sapiente placeat minus odit, minima quis nesciunt asperiores beatae voluptatem?'
-    ])
-    </div>
-    
-</div>
+    <h1>bonjour</h1>
+    @yield('content')
+</body>
+</html>

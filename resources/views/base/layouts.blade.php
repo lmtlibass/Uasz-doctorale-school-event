@@ -17,6 +17,7 @@
                document.documentElement.classList.remove('dark')
           }
      </script>
+     <script src="//cdn.metered.ca/sdk/video/1.4.6/sdk.min.js"></script>
      <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 

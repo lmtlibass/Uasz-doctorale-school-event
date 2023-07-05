@@ -4,7 +4,9 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Appelle;
+use App\Models\Article;
 use App\Models\Evenement;
+use Laravel\Cashier\Billable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,7 +14,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, Billable;
 
     /**
      * The attributes that are mass assignable.
@@ -56,5 +58,10 @@ class User extends Authenticatable
     public function soumission()
     {
         return $this->hasOne(Soumission::class);
+    }
+
+    public function article()
+    {
+        return $this->belongsTo(Article::class);
     }
 }

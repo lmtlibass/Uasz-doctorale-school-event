@@ -55,9 +55,9 @@ class UserTableSeeder extends Seeder
 
 
 
-        $adminRole          = Role::where('name', 'Admin')->first();
-        $utilisateurRole    = Role::where('name', 'User')->first();
-        $responsableRole    = Role::where('name', 'Responsable')->first();
+        $adminRole          = Role::where('name', 'admin')->first();
+        $utilisateurRole    = Role::where('name', 'user')->first();
+        $responsableRole    = Role::where('name', 'user')->first();
 
         $admin->roles()->attach($adminRole);
         $utilisateur->roles()->attach($utilisateurRole);

@@ -1,3 +1,15 @@
+<style>
+     .btn-disabled {
+          opacity: 0.5;
+          pointer-events: none;
+     }
+
+     .disabled {
+          display: none;
+          visibility: hidden;
+     }
+</style>
+
 <button data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar"
      type="button"
      class="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
@@ -27,8 +39,10 @@
                          <span class="ml-3">Accueil</span>
                     </a>
                </li>
+               {{-- @dump(Auth::user()->roles->first()->name) --}}
                <hr class="h-px my-8  w-full  bg-gray-200 border-0 dark:bg-gray-700">
-               <li>
+
+               <li class="{{ Auth::user()->roles->first()->name !== 'admin' ? 'disabled' : '' }}">
                     <button type="button"
                          class="mt-5 flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                          aria-controls="appelle-dropdown" data-collapse-toggle="appelle-dropdown">
@@ -62,7 +76,7 @@
                          </li>
                     </ul>
                </li>
-               <li>
+               <li class="{{ Auth::user()->roles->first()->name !== 'admin' ? 'disabled' : '' }}">
                     <button type="button"
                          class="mt-5 flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                          aria-controls="dropdown-event" data-collapse-toggle="dropdown-event">
@@ -98,6 +112,7 @@
                          </li>
                     </ul>
                </li>
+
                <li>
                     <a href="{{ route('appelle') }}"
                          class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
@@ -126,7 +141,7 @@
                          </svg>
                          <span class="flex-1 ml-3 whitespace-nowrap">Evenements</span>
                          <span
-                              class="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">{{ $nombre_evenement}}</span>
+                              class="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">{{ $nombre_evenement }}</span>
                     </a>
                </li>
                <li>
@@ -144,7 +159,7 @@
                </li>
                <li>
                     <a href="{{ route('admin.users.index') }}"
-                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 {{ Auth::user()->roles->first()->name !== 'admin' ? 'btn-disabled' : '' }}">
                          <svg aria-hidden="true"
                               class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                               fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">

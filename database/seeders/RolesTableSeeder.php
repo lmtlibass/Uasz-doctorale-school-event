@@ -16,14 +16,12 @@ class RolesTableSeeder extends Seeder
         Role::truncate();
         
         Role::create([
-            'name' => 'Admin',
+            'name' => 'admin',
         ]);
         Role::create([
-            'name' => 'User',
+            'name' => 'user',
         ]);
-        Role::create([
-            'name' => 'Responsable',
-        ]);
+       
 
        
     }

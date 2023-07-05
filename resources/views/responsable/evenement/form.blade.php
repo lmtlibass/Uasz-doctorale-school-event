@@ -21,7 +21,9 @@
           
           <form method="POST"
                action="{{ route($evenement->exists ? 'responsable.evenement.update' : 'responsable.evenement.store', $evenement) }}"
-               class="shadow-lg p-10 ml-16 rounded-lg" enctype="multipart/form-data">
+               class="shadow-lg p-10 ml-16 rounded-lg" 
+               enctype="multipart/form-data"
+               id="form">
 
                @csrf
                @method($evenement->exists ? 'PUT' : 'POST')
@@ -29,7 +31,7 @@
                <div class="flex justify-between">
                     
                     <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white md:text-xl lg:text-xl ">
-                         {{ $evenement->exists ? 'Modifier l\'' : 'Ajouter une' }} <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">evenement</span> 
+                         {{ $evenement->exists ? 'Modifier l\'' : 'Ajouter une' }} <span class="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">evenement</span>
                     </h2>
                     <a href="{{ route('responsable.evenement.index') }}"
                          class="px-4 py-2 flex justify-between items-center text-sm font-medium leading-5 text-white transition-colors duration-150 bg-[#249876] border border-transparent rounded-lg active:bg-blue-600 hover:bg-[028765] focus:outline-none focus:shadow-outline-blue">
@@ -67,13 +69,17 @@
                    'label' => 'ajoutez une image',
                ])
               
-
+               <input id="payment_method" type="hidden" name="payment_method">
                
+              <div id="card-element">
+                    
+              </div>
 
 
                {{-- button submit --}}
                <div class="flex justify-end mt-8">
                     <button type="submit"
+                         id="submit-button"
                          class="px-4 py-2 w-full text-sm font-medium leading-5 text-white transition-colors duration-150 bg-[#249876] border border-transparent rounded-lg active:bg-blue-600 hover:bg-[028765] focus:outline-none focus:shadow-outline-blue">
                          Enregistrer
                     </button>
@@ -82,3 +88,34 @@
           </form>
      </div>
 </div>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+     const stripe = Stripe(" {{ env('STRIPE_KEY') }}");
+
+     const elements = stripe.elements();
+     const cardElement = elements.create('card', {
+          classes: {
+               base: 'StripeElement bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-10'
+          }
+     });
+
+
+     cardElement.mount('#card-element');
+
+     const cardButton = document.getElementbyId('submit-button');
+
+     cardButton.adEvenListerner('click', async(e) => {
+          e.preventDefault();
+
+          const {payementMethod, error} = await stripe.createPayementMethod('card', cardElement);
+
+          if (error) {
+               console.log('error');
+          } else {
+               document.getElementbyId('payment_method').value = payementMethod.id;
+          }
+
+          document.getElementbyId('form').submit();
+     })
+</script>

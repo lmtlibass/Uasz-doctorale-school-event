@@ -3,6 +3,11 @@
 namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
+
+use App\Models\Appelle;
+use App\Models\Evenement;
+use App\Policies\AppellePolicy;
+use App\Policies\EvenementPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -13,7 +18,8 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        //
+        Appelle::class      => AppellePolicy::class,
+        Evenement::class    => EvenementPolicy::class,
     ];
 
     /**

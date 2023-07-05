@@ -12,12 +12,18 @@ use Illuminate\Support\Facades\Auth;
 
 class AppelleController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->authorizeResource(Appelle::class, 'appelle');
+    }
+
+
     /**
      * Retourne la liste des appelles publiés par un responsable.
      */
     public function index()
     {
-
         $appelles =  Appelle::where('appelles.user_id', '=', '1')->paginate(8);
         return view('responsable.appelle.index', compact('appelles'));
     }
@@ -27,6 +33,7 @@ class AppelleController extends Controller
      */
     public function create(Appelle $appelle)
     {
+        $this->authorize('create', $appelle);
         return view('responsable.appelle.form', compact('appelle'));
     }
 
@@ -35,7 +42,7 @@ class AppelleController extends Controller
      */
     public function store(AppelleFormRequest $request, Appelle $appelle)
     {
-        
+
         $data = [
             'title' => $request->input('title'),
             'description' => $request->input('description'),
@@ -51,12 +58,12 @@ class AppelleController extends Controller
             Storage::disk('public')->delete($appelle->pj);
         }
 
-        
+
         $appelle =  Appelle::create($data);
-        
+
         return redirect()
-                ->route('responsable.appelle.index')
-                ->with('success', 'appelle à communication enrégistrer avec succées');
+            ->route('responsable.appelle.index')
+            ->with('success', 'appelle à communication enrégistrer avec succées');
     }
 
     /**
@@ -74,7 +81,7 @@ class AppelleController extends Controller
 
     public function edit(Appelle $appelle)
     {
-        
+        $this->authorize('update', $appelle);
         return view('responsable.appelle.form', compact('appelle',));
     }
 
@@ -85,11 +92,11 @@ class AppelleController extends Controller
     public function update(AppelleFormRequest $request, Appelle $appelle)
     {
 
-        
+        $this->authorize('update', $appelle);
         $appelle->update($this->replaceImage($appelle, $request));
         return redirect()
-                ->route('responsable.appelle.index')
-                ->with('success', 'appelle à communication modifié avec succées');
+            ->route('responsable.appelle.index')
+            ->with('success', 'appelle à communication modifié avec succées');
     }
 
     /**
@@ -99,10 +106,10 @@ class AppelleController extends Controller
     private function replaceImage(Appelle $appelle, AppelleFormRequest $request): array
     {
         $data = $request->validated();
-        
+
         $image = $request->validated('image');
         $pj = $request->validated('pj');
-        
+
         if ($appelle->image) {
             Storage::disk('public')->delete($appelle->image);
         }
@@ -113,7 +120,6 @@ class AppelleController extends Controller
         $data['pj'] = $pj->store('appelle-fichier', 'public');
         //  $date['user_id'] = 1;
         return $data;
-       
     }
     /**
      * Remove the specified resource from storage.
@@ -121,12 +127,10 @@ class AppelleController extends Controller
 
     public function destroy(Appelle $appelle)
     {
+        $this->authorize('destroy', $appelle);
         $appelle->delete();
         return redirect()
-                ->route('responsable.appelle.index')
-                ->with('success', 'appelle à communication supprimé avec succées');
+            ->route('responsable.appelle.index')
+            ->with('success', 'appelle à communication supprimé avec succées');
     }
-
-
-
 }

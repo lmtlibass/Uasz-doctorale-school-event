@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Responsable;
 
+use Exception;
 use Carbon\Carbon;
 use App\Models\Evenement;
 use Illuminate\Http\Request;
@@ -12,6 +13,11 @@ use App\Http\Requests\EvenementFormRequest;
 
 class EvenementController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Evenement::class, 'evenement');
+    }
+
     /**
      * Retourne la liste des evenements publiés par un responsable.
      */
@@ -27,6 +33,7 @@ class EvenementController extends Controller
      */
     public function create(Evenement $evenement)
     {
+        $this->authorize('create', $evenement);
         return view('responsable.evenement.form', compact('evenement'));
     }
 
@@ -35,6 +42,16 @@ class EvenementController extends Controller
      */
     public function store(EvenementFormRequest $request, Evenement $evenement)
     {
+        $user = Auth::user();
+        $amount = 1000;
+
+        try {
+             $user->charge($amount, $request->paymentMethod);
+        } catch (Exception $e) {
+            $e->getMessage();
+        }
+        // $user->charge($amount, $request->payment_method);
+
         $data = [
             'title' => $request->input('title'),
             'description' => $request->input('description'),
@@ -66,7 +83,7 @@ class EvenementController extends Controller
 
     public function edit(Evenement $evenement)
     {
-        
+        $this->authorize('update', $evenement);
         return view('responsable.evenement.form', compact('evenement'));
     }
 
@@ -75,6 +92,7 @@ class EvenementController extends Controller
      */
     public function update(EvenementFormRequest $request, Evenement $evenement)
     {
+        $this->authorize('update', $evenement);
         $evenement->update($this->replaceImage($evenement, $request));
         return redirect()->route('responsable.evenement.index')->with('success', 'evenement à communication modifié avec succées');
     }
@@ -84,6 +102,7 @@ class EvenementController extends Controller
 
      private function replaceImage(Evenement $evenement, EvenementFormRequest $request): array
      {
+
          $data = $request->validated();
          $data['user_id'] = 1;
          
@@ -103,7 +122,11 @@ class EvenementController extends Controller
 
     public function destroy(Evenement $evenement)
     {
+        $this->authorize('delete', $evenement);
         $evenement->delete();
         return redirect()->route('responsable.evenement.index')->with('success', 'evenement à communication supprimé avec succées');
     }
+
+
+
 }
