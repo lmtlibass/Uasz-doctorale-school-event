@@ -23,7 +23,7 @@
           </h5>
           </p>
           <p class="mb-3 h-20 text-sm font-normal text-gray-700 dark:text-gray-400">
-               {{ substr($description, 0, 100) }} [...]</p>
+               {!! substr($description, 0, 100) !!} [...]</p>
 
           <div class="flex items-center justify-between">
                <a href="{{ asset('storage/' . $pj) }}" class="text-sm"

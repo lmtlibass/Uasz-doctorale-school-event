@@ -13,7 +13,7 @@ class HomeController extends Controller
         // $appelles  = Appelle::paginate(8);
         // $evenements =  Evenement::paginate(8);
 
-        return view('home.index');
+        return view('home');
     }
 
     public function appelle()

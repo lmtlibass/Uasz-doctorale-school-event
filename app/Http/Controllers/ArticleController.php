@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ArticleController extends Controller
 {
@@ -12,16 +13,24 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::all();
-        return view('articles.index', compact('articles'));
+        
+        Auth::user()->roles->first()->name == 'admin'
+        ? $articles = Article::paginate(9)
+        : $articles = Article::where('user_id', '=', Auth::user()->id)->paginate(9);
+
+        if($articles->isEmpty()){
+            $response = "Vous n'avez pas encore publié d'article";
+        }
+        
+        return view('articles.index', compact(['articles', 'response']));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Article $article)
     {
-        return view('articles.create');
+        return view('articles.form', compact('article'));
     }
 
     /**
@@ -29,8 +38,21 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        Article::create($request->all());
-        return redirect()->route('articles.index')->with('success', 'Votre article est enrégistrer avec succés.');
+        $user_id = auth()->user()->id;
+        
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+            'tags' => 'required'
+        ]);
+        
+        $article = Article::create([
+            'title' => $request->title,
+            'content' => $request->content,
+            'tags' => $request->tags,
+            'user_id' => $user_id
+        ]);
+        return redirect()->route('article.article.index')->with('success', 'Votre article est enrégistrer avec succés.');
     }
 
     /**
@@ -46,7 +68,7 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        return view('articles.edit', compact('article'));
+        return view('articles.form', compact('article'));
     }
 
     /**
@@ -65,5 +87,15 @@ class ArticleController extends Controller
     {
         $article->delete();
         return redirect()->route('articles.index')->with('success', 'Votre article est supprimer avec succés.');
+    }
+
+    public function getArticles()
+    {
+        $response = '';
+        if($response == ''){
+            $articles= [];
+        }
+        $articles = Article::paginate(9);
+        return view('articles.index', compact('articles', 'response'));
     }
 }

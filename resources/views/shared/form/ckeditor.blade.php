@@ -7,10 +7,8 @@
 @endphp
 <div class="mt-8 mb-8">
      <label class="block mb-2 text-xl dark:text-white">{{ $label }} </label>
-     <textarea name="{{ $name }}" 
-          class="bg-gray-500 "
-           required="{{ $required }}"> 
-          {{$placeholder}}</textarea>
+     <textarea name="{{ $name }}" class="bg-gray-500 " required="{{ $required }}"> 
+          {{ $placeholder }}</textarea>
      {{-- errors --}}
 
      @error($name)
@@ -27,6 +25,5 @@
 <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
 
 <script>
-     CKEDITOR.replace('description');
+     CKEDITOR.replace( '{{ $name }}');
 </script>
-

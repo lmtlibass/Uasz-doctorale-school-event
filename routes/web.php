@@ -91,6 +91,6 @@ Route::controller(ArticleController::class)
     ->middleware('auth')
     ->name('article.')
     ->group(function (){
-        
         Route::resource('article', ArticleController::class);
+        Route::get('articles', 'getArticles')->name('articles');
 });
