@@ -25,7 +25,7 @@ class AppelleFormRequest extends FormRequest
             'title' => ['required','min:5'],
             'description' => ['min:10'],
             // 'date' => 'required|date_format:Y-m-d',
-            'image' => ['required', 'image', 'max:2048'],
+            'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg'],
             'pj' => ['mimes:pdf,doc,docx,ppt,pptx'],
         ];
     }

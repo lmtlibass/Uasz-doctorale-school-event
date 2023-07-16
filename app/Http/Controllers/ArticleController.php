@@ -21,7 +21,7 @@ class ArticleController extends Controller
         if($articles->isEmpty()){
             $response = "Vous n'avez pas encore publié d'article";
         }
-        
+        $response = '';
         return view('articles.index', compact(['articles', 'response']));
     }
 

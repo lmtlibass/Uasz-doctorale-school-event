@@ -45,7 +45,7 @@
                </div>
                <div>
                     <p class="text-gray-500 text-sm mt-2 text-justify justify-normal">
-                         {!! $article->content !!}
+                         {!! nl2br($article->content) !!}
                     </p>
                </div>
           </div>

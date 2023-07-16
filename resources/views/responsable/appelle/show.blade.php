@@ -61,7 +61,7 @@
                          </div>
                     </div>
                     <div>
-                         <p class="text-gray-500 text-sm mt-2">{!! $appelle->description !!}</p>
+                         <p class="text-gray-500 text-sm mt-2 dark:text-white">{!! $appelle->description !!}</p>
                     </div>
                </div>
                <div class="mt-12 items-center flex justify-between">

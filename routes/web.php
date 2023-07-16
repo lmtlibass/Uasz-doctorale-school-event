@@ -50,6 +50,7 @@ Route::controller(App\Http\Controllers\Responsable\SoumissionController::class)
         Route::get('soumission/{soumission}', 'showSoumission')->name('soumission.show');
         Route::get('soumission/{soumission}/accepter', 'accepter')->name('soumission.accepter');
         Route::get('soumission/{soumission}/refuser', 'refuser')->name('soumission.refuser');
+        Route::post('soumission/sendMail', 'sendMail')->name('soumission.sendMail');
     });
 
 

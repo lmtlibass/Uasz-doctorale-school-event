@@ -1,7 +1,7 @@
 <nav class="fixed w-auto sm:bg-none border-[#fff] bg-[#fff] dark:bg-gray-800 dark:border-gray-700 shadow-md">
 
      <div class="flex w-screen justify-between mx-10 p-2 px-64 ">
-          <a href="#" class="flex items-start">
+          <a href="{{route('home')}}" class="flex items-start">
                <img src="{{ asset('img/logo.png') }}" class="h-11" alt="UASZ" />
           </a>
 

@@ -25,7 +25,7 @@ class EvenementFormRequest extends FormRequest
             'title' => ['required', 'min:5'],
             'description' => ['required', 'min:10'],
             // 'date' => 'required|date_format:Y-m-d',
-            'media' => ['required','image','max:2048'],
+            'media' => ['required','image', 'mimes:jpeg,png,jpg,gif,svg'],
         ];
     }
 }
