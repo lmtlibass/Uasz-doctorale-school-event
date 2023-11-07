@@ -11,6 +11,8 @@ class Evenement extends Model
 {
     use HasFactory;
 
+    protected $table = 'evenements';
+
     protected $fillable = [
         'title',
         'description',

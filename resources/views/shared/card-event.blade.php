@@ -7,17 +7,14 @@
      $cardroute ??= '';
      $argument ??= '';
 @endphp
-  
+
 <div
      class=" max-w-sm w-64 h-96 mt-10 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
      <div class="">
-          {{-- <img src="{{ asset('storage/appelles-image/' . $image) }}" alt="Image"> --}}
-
           <img class="rounded-t-lg h-40 w-full" src="/storage/{{  $image }}" alt="" />
      </div>
      <div class="p-2">
           <p>{{ $date }}</p>
-          <p>
           <h5 class="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
                {{ $title }}
           </h5>
@@ -47,15 +44,6 @@
                     </a>
                @endif
           </div>
-
-
-
-
-
-
-
-
-
      </div>
 </div>
 

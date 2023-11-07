@@ -10,10 +10,10 @@ class HomeController extends Controller
 {
     public function index()
     {
-        // $appelles  = Appelle::paginate(8);
-        // $evenements =  Evenement::paginate(8);
+        $appelles  = Appelle::orderBy('created_at', 'desc')->get();
+        $evenements =  Evenement::orderBy('created_at', 'desc')->get();
 
-        return view('home');
+        return view('home', compact('appelles', 'evenements'));
     }
 
     public function appelle()

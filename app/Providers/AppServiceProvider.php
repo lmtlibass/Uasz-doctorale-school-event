@@ -14,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         //
-      
+    
     }
 
     /**
@@ -22,7 +22,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
         $nombre_evenemnt = Evenement::count();
         View::share('nombre_evenement',$nombre_evenemnt);
     }
