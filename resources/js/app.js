@@ -47,9 +47,9 @@ themeToggleBtn.addEventListener('click', function() {
 });
 
 import {
-  Modal,
-  Ripple,
-  initTE,
+    Modal,
+    Ripple,
+    initTE,
 } from "tw-elements";
 
 initTE({ Modal, Ripple });
@@ -198,14 +198,14 @@ meeting.on("onlineParticipants", function (participants) {
         ) {
             jquery("#remoteParticipantContainer").append(
                 `
-          <div id="participant-${participantInfo._id}" class="w-48 h-48 rounded-3xl bg-green-900 relative">
-            <video id="video-${participantInfo._id}" src="" autoplay class="object-contain w-full rounded-t-3xl"></video>
-            <video id="audio-${participantInfo._id}" src="" autoplay class="hidden"></video>
-            <div class="absolute h-8 w-full bg-green-700 rounded-b-3xl bottom-0 text-white text-center font-bold pt-1">
-                ${participantInfo.name}
+            <div id="participant-${participantInfo._id}" class="w-48 h-48 rounded-3xl bg-green-900 relative">
+                <video id="video-${participantInfo._id}" src="" autoplay class="object-contain w-full rounded-t-3xl"></video>
+                <video id="audio-${participantInfo._id}" src="" autoplay class="hidden"></video>
+                <div class="absolute h-8 w-full bg-green-700 rounded-b-3xl bottom-0 text-white text-center font-bold pt-1">
+                    ${participantInfo.name}
+                </div>
             </div>
-          </div>
-          `
+            `
             );
         }
     }

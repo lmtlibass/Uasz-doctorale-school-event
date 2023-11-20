@@ -42,27 +42,19 @@ class EvenementController extends Controller
      */
     public function store(EvenementFormRequest $request, Evenement $evenement)
     {
-        $user = Auth::user();
-        $amount = 1000;
-
-        try {
-             $user->charge($amount, $request->paymentMethod);
-        } catch (Exception $e) {
-            $e->getMessage();
-        }
-        // $user->charge($amount, $request->payment_method);
-
+        
         $data = [
             'title' => $request->input('title'),
             'description' => $request->input('description'),
             'media' => $request->file('media')->store('evenement-image', 'public'),
             'user_id' => Auth::user()->id,
+            'isPremium' => $request->input('isPremium'),
         ];
         
         if ($evenement->image) {
             Storage::disk('public')->delete($evenement->image);
         }
-       
+    
         $evenement =  Evenement::create($data);
         
         return redirect()->route('responsable.evenement.index')->with('success', 'evenement à communication enrégistrer avec succées');
@@ -70,7 +62,7 @@ class EvenementController extends Controller
 
     /**
      * Display the specified resource.
-     */
+    */
     public function show(Evenement $evenement)
     {
         return view('responsable.evenement.show', compact('evenement'));

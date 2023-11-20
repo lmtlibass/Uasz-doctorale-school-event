@@ -6,7 +6,29 @@
 </div>
 
 <div class="px-12   mt-20 mx-auto ml-28  ">
+     <div class="ml-32 mt-10">
+          <a href="{{ route('responsable.appelle.index') }}"
+               class="px-4 mb-5 w-24 py-1 flex justify-between items-center text-sm font-medium leading-5 text-white transition-colors duration-150 bg-[#CE0033] border border-transparent rounded-lg active:bg-red-600 hover:bg-[E42629] focus:outline-none focus:shadow-outline-blue">
+               Retour
+               <svg class="h-8 w-6 ml-2 text-white" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" />
+                    <polyline points="9 6 15 12 9 18" />
+               </svg>
+          </a>
+     </div>
 
+     <div class="mt-5">
+          @if($errors->any())
+               <div class="bg-red-500 p-4 rounded-lg mb-6 text-white text-center">
+                    <ul>
+                         @foreach($errors->all() as $error)
+                         <li>{{ $error }}</li>
+                         @endforeach
+                    </ul>
+               </div>
+          @endif
+     </div>
      <div
           class="max-w-full ml-32 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
           <div>

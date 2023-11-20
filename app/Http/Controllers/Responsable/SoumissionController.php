@@ -31,7 +31,7 @@ class SoumissionController extends Controller
         $soumission->update([
             'status' => '1'
         ]);
-        return redirect()->back()->with('success', 'La proposition de communication a été accepter avec succées');
+        return redirect()->route('responsable.soumission.get', $soumission->appelle_id)->with('success', 'La proposition de communication a été accepter avec succées');
     }
 
     public function refuser(Soumission $soumission)
@@ -39,7 +39,7 @@ class SoumissionController extends Controller
         $soumission->update([
             'status' => '0'
         ]);
-        return redirect()->back()->with('success', 'La proposition de communication a été refuser avec succées');
+        return redirect()->route('responsable.soumission.get', $soumission->appelle_id)->with('error', 'La proposition de communication a été refuser avec succées');
     }
 
     public function sendMail(Request $request)

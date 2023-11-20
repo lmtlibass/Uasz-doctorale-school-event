@@ -12,7 +12,7 @@ class EvenementController extends Controller
      */
     public function index()
     {
-        $evenements = Evenement::all();
+        $evenements = Evenement::Paginate(6);
         return view('home.evenement', compact('evenements'));
     }
 

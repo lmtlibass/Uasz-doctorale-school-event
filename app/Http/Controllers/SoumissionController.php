@@ -32,7 +32,7 @@ class SoumissionController extends Controller
      */
     public function store(SoumissionFormRequest $request, Soumission $soumission)
     {
-        
+        $soumissions = Soumission::all();
         
         $data = [
             'title'         => $request->validated('title'),
@@ -42,11 +42,17 @@ class SoumissionController extends Controller
             'appelle_id'    => $request->input('appelle_id'),
             'pj'            => $request->file('pj')->store('appelle-fichier', 'public'),
         ];
+        
 
         if( $soumission->pj){
             Storage::disk('public')->delete($soumission->pj);
         }
-       
+
+        foreach($soumissions as $soumission){
+            if($soumission->user_id == Auth::user()->id && $soumission->appelle_id == $request->input('appelle_id')){
+                return redirect()->back()->with('error', 'vous avez déjà soumis une proposition pour cet appel');
+            }
+        }
 
         $soumission =  Soumission::create($data);
         

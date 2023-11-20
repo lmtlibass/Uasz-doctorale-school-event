@@ -18,7 +18,8 @@ class Evenement extends Model
         'description',
         'media',
         'date',
-        'user_id'
+        'user_id',
+        'isPremium',
     ];
 
     protected $dates = ['date'];
@@ -29,6 +30,10 @@ class Evenement extends Model
     
     public function user(){
         return $this->belongsTo(User::class);
+    }
+
+    public function inscriptions(){
+        return $this->hasMany(Inscription::class);
     }
     
 }

@@ -110,10 +110,10 @@
                     </div>
                     <!-- Row -->
                     @php
-                         $evenements = App\Models\Evenement::Paginate(1);
+                         $evenements = App\Models\Evenement::orderBy('created_at', 'desc')->limit(2)->get();
                     @endphp
                     <div class="items-center gap-8 lg:grid lg:grid-cols-2 xl:gap-16">
-                         <div class="w-75">
+                         <div class="w-75 flex">
                               @foreach ($evenements as $evenement)
                                    @include('shared.home.card-event', [
                                         'date' => $evenement->created_at->format('d-m-Y'),
@@ -125,9 +125,9 @@
                                         'pj' => $evenement->pj,
                                    ])
                               @endforeach
-                              <div class="mt-3">
+                              {{-- <div class="mt-3">
                                    {{ $evenements->links() }}
-                              </div>
+                              </div> --}}
                          </div>
                          <div class="text-gray-500 sm:text-lg dark:text-gray-400">
                               <h2 class="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">

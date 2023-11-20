@@ -38,6 +38,8 @@ Route::controller(HomeController::class)
     });
 
 Route::resource('evenement', App\Http\Controllers\EvenementController::class);
+// Inscription evènement
+Route::get('inscription/{evenement_id}', [App\Http\Controllers\InscriptionController::class ,'store'])->name('inscription.create');
 
 Route::resource('soumission', SoumissionController::class)->except('create');
 
@@ -51,6 +53,16 @@ Route::controller(App\Http\Controllers\Responsable\SoumissionController::class)
         Route::get('soumission/{soumission}/accepter', 'accepter')->name('soumission.accepter');
         Route::get('soumission/{soumission}/refuser', 'refuser')->name('soumission.refuser');
         Route::post('soumission/sendMail', 'sendMail')->name('soumission.sendMail');
+    });
+
+//Participants évènement
+
+Route::controller(App\Http\Controllers\Responsable\ParticipantController::class)
+    ->prefix('responsable')
+    ->name('responsable.')
+    ->middleware('auth')
+    ->group(function () {
+        Route::get('participants/{id}', 'getPraticipant')->name('participant.get');
     });
 
 

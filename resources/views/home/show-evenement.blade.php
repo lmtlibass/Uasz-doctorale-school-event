@@ -6,7 +6,31 @@
 </div>
 
 <div class="px-12   mt-20 mx-auto ml-28  ">
+     @if ($errors->any())
+          <div class="text-red-500 mx-auto ml-32 text-sm">
+               <ul>
+                    @foreach ($errors->all() as $error)
+                         <li>{{ $error }}</li>
+                    @endforeach
+               </ul>
+          </div>
+     @endif
 
+     <div class="ml-32 mt-10">
+          <a href="{{ route('evenement.index') }}"
+               class="px-4 mb-5 w-24 py-1 flex justify-between items-center text-sm font-medium leading-5 text-white transition-colors duration-150 bg-[#CE0033] border border-transparent rounded-lg active:bg-red-600 hover:bg-[E42629] focus:outline-none focus:shadow-outline-blue">
+               Retour
+               <svg class="h-8 w-6 ml-2 text-white" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" />
+                    <polyline points="9 6 15 12 9 18" />
+               </svg>
+          </a>
+     </div>
+     <div class="ml-32 mt-5">
+          @include('...shared.session-status')
+          @include('...shared.error-status')
+     </div>
      <div
           class="max-w-full ml-32 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
           <div>
@@ -14,8 +38,7 @@
           </div>
           <div class="p-5">
 
-               @include('...shared.session-status')
-               @include('...shared.error-status')
+               
 
                <div class="grid grid-cols-1 gap-2">
                     <h2 class="mb-4 mt-8 mx-auto text-xl font-bold text-gray-900 dark:text-white md:text-xl lg:text-xl ">
@@ -40,18 +63,14 @@
                
                <button data-te-toggle="modal" data-te-target="#exampleModalScrollable" data-te-ripple-init
                     data-te-ripple-color="light" type="button"
+                    onclick="window.location.href='{{ route('inscription.create', $evenement->id) }}'"
                     class="w-full mt-10  focus:outline-none text-white bg-gradient-to-r to-emerald-600 from-sky-400 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                     S'inscrire à l'évènement</button>
-
-
           </div>
-
-
-
      </div>
 
 
-
+{{-- 
      <div data-te-modal-init
           class="fixed left-0 top-0 z-[1055] hidden h-full w-full overflow-y-auto overflow-x-hidden outline-none"
           id="exampleModalScrollable" tabindex="-1" aria-labelledby="exampleModalScrollableLabel" aria-hidden="true">
@@ -139,4 +158,4 @@
                     </div>
                </div>
           </div>
-     </div>
+     </div> --}}

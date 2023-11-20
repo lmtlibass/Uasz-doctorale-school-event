@@ -64,4 +64,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Article::class);
     }
+
+    public function inscriptions()
+    {
+        return $this->belongsToMany(Inscription::class, 'inscription_users');
+    }
 }

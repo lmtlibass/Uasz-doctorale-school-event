@@ -1,6 +1,6 @@
 @extends('......base.layouts')
 
-@section('title', 'Detail de appelles{{ $soumission->title }}')
+@section('title', 'Detail de appelles ')
 
 <div class="flex flex-col">
      @include('......shared.navebar')
@@ -9,12 +9,12 @@
 
 <div class="px-12 py-10 mx-auto ml-32 ">
      <div class="shadow-lg p-10 ml-32 mt-14 rounded-xl">
-          <a href="{{ URL::previous() }}">
-                <svg class="w-6 h-6 text-gray-500 flex items-center justify-between hover:text-green-500" fill="none" stroke="currentColor"
+          <a href="{{ URL::previous() }}" class="px-4 mb-5 w-24 py-2 flex justify-between items-center text-sm font-medium leading-5 text-white transition-colors duration-150 bg-[#CE0033] border border-transparent rounded-lg active:bg-red-600 hover:bg-[E42629] focus:outline-none focus:shadow-outline-blue">
+               <svg class="w-6 mr-2 h-6 text-white flex items-center justify-between hover:text-green-500" fill="none" stroke="currentColor"
                     viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                          d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-               </svg> <span class="text-red-600">retour</span>
+               </svg>retour
           </a>
           <div class="grid grid-cols-1 gap-2">
                <h2 class="mb-4 mt-8 mx-auto text-xl font-bold text-gray-900 dark:text-white md:text-xl lg:text-xl ">

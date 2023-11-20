@@ -13,6 +13,22 @@
 
 <!-- component -->
 <div class="px-12 py-10 mx-auto ml-32 ">
+     <div class="ml-32 mt-10">
+          <a href="{{ route('responsable.appelle.index') }}"
+               class="px-4 mb-5 w-24 py-1 flex justify-between items-center text-sm font-medium leading-5 text-white transition-colors duration-150 bg-[#CE0033] border border-transparent rounded-lg active:bg-red-600 hover:bg-[E42629] focus:outline-none focus:shadow-outline-blue">
+               Retour
+               <svg class="h-8 w-6 ml-2 text-white" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" />
+                    <polyline points="9 6 15 12 9 18" />
+               </svg>
+          </a>
+     </div>
+     <div class="text-center">
+          @include('...shared.session-status')
+          @include('...shared.error-status')
+     </div>
+
      <div class="shadow-lg p-10 ml-32 mt-14 rounded-xl">
           <div class="align-middle bg-none dark:bg-gray-700   inline-block w-full py-4 overflow-hidden shadow-lg px-12">
                <div class="flex justify-between dark:bg-gray-700">
@@ -37,8 +53,7 @@
                     </div>
                </div>
           </div>
-          <div
-               class="align-middle p-5 inline-block min-w-full shadow overflow-hidden bg-white shadow-dashboard px-8 pt-3 rounded-bl-lg rounded-br-lg">
+          <div class="align-middle p-5 inline-block min-w-full shadow overflow-hidden bg-white shadow-dashboard px-8 pt-3 rounded-bl-lg rounded-br-lg">
                <table class="min-w-full p-5 table-auto border-collapse border border-slate-300">
                     <thead class="bg-gray-200 text-white">
                          <tr>

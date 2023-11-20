@@ -24,6 +24,7 @@ class SoumissionFormRequest extends FormRequest
         return [
             'title' => ['required', 'min:5'],
             'description' => ['required', 'min:10'],
+            'user_id' => ['unique:soumissions'],
             'pj' => ['mimes:pdf,doc,docx,ppt,pptx'],
         ];
     }
